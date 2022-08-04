@@ -1,13 +1,12 @@
-// import userModel from "../models/userModel.js";
+import userModel from "../models/userModel.js";
 
-const create = (req, res) => {
+const create = async (req, res) => {
     try {
         console.log(req.body);
-        // res.status(201).send(req.body);
-        res.status(201).json(req.body);
+        const data = await userModel.create(req.body)
+        res.status(201).json(data);
     } catch (error) {
         console.log(error);
-        // res.status(500).send({ error: error.message });
         res.status(500).json({ error: error.message });
     }
 }
