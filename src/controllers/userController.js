@@ -3,8 +3,9 @@ import userModel from "../models/userModel.js";
 class userController {
     static userRegistration = async (req, res) => {
         try {
+            const { firstname, lastname, email, password } = req.body
             console.log(req.body);
-            const data = userModel(req.body);
+            const data = new userModel({firstname,lastname,email,password});
             await data.save();
             res.status(201).json(data);
         } catch (error) {
